@@ -73,6 +73,10 @@ const Crowd: React.FC = () => {
       try {
         formRef.current?.setErrors({});
 
+        if(data.name === '') {
+          setLoadingButton(false);
+        }
+
         const schema = Yup.object().shape({
           name: Yup.string().required('Nome obrigatório'),
         });
@@ -83,6 +87,7 @@ const Crowd: React.FC = () => {
 
         if(currentState === '') {
           setSelectStateListWarnning(true);
+          setLoadingButton(false);
           return;
         }
 
